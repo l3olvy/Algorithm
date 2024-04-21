@@ -1,5 +1,7 @@
-n = int(input())
-num = list(map(int, input().split()))
+import sys
+
+n = int(sys.stdin.readline().rstrip())
+num = list(map(int, sys.stdin.readline().rstrip().split()))
 result = [1] * (n + 1)
 result[1] = num[n - 1]
 
