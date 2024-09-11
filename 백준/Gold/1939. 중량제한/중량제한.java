@@ -7,18 +7,12 @@ public class Main {
 	static ArrayList<ArrayList<Node>> graph;
 	static boolean visited[];
 	
-	static class Node implements Comparable<Node>{
+	static class Node {
 		int to, weight;
 		
 		public Node(int to, int weight) {
 			this.to = to;
 			this.weight = weight;
-		}
-		
-		// weight 기준 내림차순 정렬
-		@Override
-		public int compareTo(Node o) {
-			return Integer.compare(o.weight, this.weight);
 		}
 	}
 
@@ -54,11 +48,7 @@ public class Main {
 		F1 = Integer.parseInt(st.nextToken());
 		F2 = Integer.parseInt(st.nextToken());
 		max = 0;
-		// weight 기준 오름차순 정렬
-		for (int n = 1; n <= N; n++) {
-			Collections.sort(graph.get(n));
-		}
-		
+
 		System.out.println(binarySearch(1, maxLen));
 	}
 	
