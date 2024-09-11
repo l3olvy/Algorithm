@@ -48,7 +48,7 @@ public class Main {
 		F1 = Integer.parseInt(st.nextToken());
 		F2 = Integer.parseInt(st.nextToken());
 		max = 0;
-
+        
 		System.out.println(binarySearch(1, maxLen));
 	}
 	
@@ -62,15 +62,15 @@ public class Main {
 	}
 	
 	public static boolean bfs(int from, int target) {
-		Queue<Node> q = new LinkedList<Node>();
+		Queue<Node> pq = new ArrayDeque<Node>();
 		
-		q.offer(new Node(from, 0));
+		pq.offer(new Node(from, 0));
 		visited = new boolean[N + 1];
 		
 		visited[from] = true;
 		
-		while (!q.isEmpty()) {
-			Node node = q.poll();
+		while (!pq.isEmpty()) {
+			Node node = pq.poll();
 			int to = node.to;
 			
 			if (to == F2) {
@@ -88,7 +88,7 @@ public class Main {
 					continue;
 				
 				visited[nextNode.to] = true;
-				q.offer(nextNode);				
+				pq.offer(nextNode);				
 			}
 		}
 		return false;
