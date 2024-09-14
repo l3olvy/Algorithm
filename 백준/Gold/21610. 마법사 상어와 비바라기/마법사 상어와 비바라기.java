@@ -75,19 +75,14 @@ public class Main {
 			Node cloud = clouds.get(i);
 			
 			// 구름 이동
-			int nx = cloud.x;
-			int ny = cloud.y;
-			for (int j = 0; j < s; j++) {
-				nx += dx[d];
-				ny += dy[d];
-				
-				if (nx >= N) nx = 0;
-				if (nx < 0) nx = N - 1;
-				if (ny >= N) ny = 0;
-				if (ny < 0) ny = N - 1;
-				
-			}
-			
+			int nx = cloud.x + dx[d] * s;
+			int ny = cloud.y + dy[d] * s;
+
+			if (nx >= N) nx %= N;
+			else if (nx < 0) nx = -((-nx) % N) == 0 ? 0 : -((-nx) % N) + N;
+			if (ny >= N) ny %= N;
+			else if (ny < 0) ny = -((-ny) % N) == 0 ? 0 : -((-ny) % N) + N;
+
 			cloud.x = nx;
 			cloud.y = ny;
 			
