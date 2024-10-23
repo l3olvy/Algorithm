@@ -10,17 +10,14 @@ public class Main {
 		
 		N = Integer.parseInt(st.nextToken());
 		M = Integer.parseInt(st.nextToken());
-		ArrayList<int[]> list = new ArrayList<int[]>();
 		index = new int[N];
-		for (int i = 0; i < N; i ++) {
-			list.add(new int[M]);
-		}
+		map = new int[N][M];
 		for (int r = 0; r < N; r++) {
 			st = new StringTokenizer(br.readLine());
 			for (int c = 0; c < M; c++) {
-				list.get(r)[c] = Integer.parseInt(st.nextToken());
+				map[r][c] = Integer.parseInt(st.nextToken());
 			}
-			Arrays.sort(list.get(r));
+			Arrays.sort(map[r]);
 		}
 		
 		
@@ -30,7 +27,7 @@ public class Main {
 			int minIdx = 0;
 			
 			for (int r = 0; r < N; r++) {
-				int king = list.get(r)[index[r]];
+				int king = map[r][index[r]];
 				if (king < min) {
 					min = king;
 					minIdx = r;
