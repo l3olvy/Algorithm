@@ -21,28 +21,7 @@ class Solution {
         
         map[1][1] = 1;
         dp(m, n);
-        
-//         ArrayDeque<Node> dq = new ArrayDeque<Node>();
-        
-//         dq.offer(new Node(1, 1));
-        
-        
-        
-//         while (!dq.isEmpty()) {
-//             Node node = dq.removeFirst();
-//             visited[node.x][node.y] = true;
-//             map[node.x][node.y] = map[node.x - 1][node.y] + map[node.x][node.y - 1];
-//             for (int i = 0; i < 2; i++) {
-//                 int nx = node.x + dx[i];
-//                 int ny = node.y + dy[i];
-                
-//                 if (nx > m || ny > n) continue;
-//                 if (isPuddles[nx][ny]) continue;
-//                 if (visited[nx][ny]) continue;
-//                 dq.offer(new Node(nx, ny));
-//             }
-//         }
-        
+          
         return map[m][n] % 1000000007;
     }
     
