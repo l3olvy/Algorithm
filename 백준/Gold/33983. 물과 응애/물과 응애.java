@@ -25,11 +25,7 @@ class Main
 	        if (arr[i] == 'H') H++;
 	        else O++;
 	        
-	        if ((i < arr.length - 1 && H - O > (N / 3))) {
-	            System.out.print("mix");
-	            return;
-	        }
-	        if (O > H) {
+	        if (O > H || H - O > (N / 3)) {
 	            System.out.print("mix");
 	            return;
 	        }
@@ -37,7 +33,6 @@ class Main
 	    
 	    if (H != 2 * O) {
 	        System.out.print("mix");
-	        return;
 	    } else {
 	        System.out.print("pure");
 	    }
