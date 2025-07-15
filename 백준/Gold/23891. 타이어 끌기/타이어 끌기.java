@@ -42,7 +42,7 @@ class Main
 
 		for (int i = 1; i <= N; i++) {
 		    for (int j = 1; j <= M; j++) {
-		        
+		        dp[i][j] = dp[i - 1][j];
 		        if (j >= arr[i].num) {
 		            dp[i][j] = Math.max(dp[i - 1][j], dp[i - 1][j - arr[i].num] + arr[i].score);
 		        }
