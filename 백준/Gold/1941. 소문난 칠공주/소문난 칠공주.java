@@ -4,9 +4,9 @@ import java.io.*;
 
 class Main
 {
-    static int N = 5, map[][], answer = 0;
+    static int N = 5, map[][];
     static boolean visited[][];
-    static Set<String> hs = new HashSet<>();
+    static Set<Integer> hs = new HashSet<>();
     // 상, 하, 좌, 우
     static int dx[] = {-1, 1, 0, 0};
     static int dy[] = {0, 0, -1, 1};
@@ -29,52 +29,42 @@ class Main
 		
 		for (int i = 0; i < N; i++) {
 		    for (int j = 0; j < N; j++) {
-		      //  System.out.println("===" + i + ", " + j + "===");
 		        visited = new boolean[N][N];
 		        visited[i][j] = true;
-		        dfs(i, j, 1, map[i][j]);
+		        int startBit = 1 << (i * N + j);
+		        dfs(i, j, 1, map[i][j], startBit);
 		    }
 		}
 		
 		System.out.print(hs.size());
 	}
 	
-	public static void dfs(int x, int y, int cnt, int sum) {
+	public static void dfs(int x, int y, int cnt, int sum, int bit) {
 	    if (sum >= 4) return;
         
 	    if (cnt == 7) {
-	        StringBuilder sb = new StringBuilder();
-	        for (int i = 0; i < N; i++) {
-	            for (int j = 0; j < N; j++) {
-	                if(visited[i][j])
-	                    sb.append(i).append(j).append(",");
-	            }
-	        }
-	        hs.add(sb.toString());
-	        answer++;
+	        hs.add(bit);
 	        return;
 	    }
 	    
 	    for (int i = 0; i < N; i++) {
 	        for (int j = 0; j < N; j++) {
-	            if (visited[i][j]) continue;
-	            if (isNeihbor(i, j)) {
-	                visited[i][j] = true;
-	                dfs(i, j, cnt + 1, sum + map[i][j]);
-	                visited[i][j] = false;
+	            int nBit = 1 << (i * N + j);
+	            if ((bit & nBit) != 0) continue;
+	            if (isNeighbor(i, j, bit)) {
+	                dfs(i, j, cnt + 1, sum + map[i][j], bit | nBit);
 	            }
 	        }
 	    }
 	}
 	
-	public static boolean isNeihbor(int x, int y) {
+	public static boolean isNeighbor(int x, int y, int bit) {
 	    for (int d = 0; d < 4; d++) {
 	        int nx = x + dx[d];
 	        int ny = y + dy[d];
 	        if (nx < 0 || ny < 0 || nx >= N || ny >= N) continue;
-	        if (visited[nx][ny]) {
-	            return true;
-	        }
+	        int nBit = 1 << (nx * N + ny);
+	        if ((nBit & bit) != 0) return true;
 	    }
 	    return false;
 	}
